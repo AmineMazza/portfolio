@@ -1,3 +1,4 @@
 ## My Portfolio
 ### Amine MAZZA
-#### Lien : https://aminemazza.github.io/portfolio/
+#### GitHub Page : https://aminemazza.github.io/portfolio/
+#### Production : https://aminemazza.vercel.app/
