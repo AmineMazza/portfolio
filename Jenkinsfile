@@ -20,11 +20,10 @@ pipeline {
         stage('Push Docker image') {
             steps {
                 script {
-                    withDockerRegistry([url: 'https://registry.hub.docker.com', credentialsId: "${DOCKER_CREDENTIALS}"]) {
-                        docker.withRegistry('https://registry.hub.docker.com', "${DOCKER_CREDENTIALS}") {
-                            docker.image("${DOCKER_IMAGE}:${env.BUILD_ID}").push()
-                        }
+                    docker.withRegistry('https://registry.hub.docker.com', "${DOCKER_CREDENTIALS}") {
+                        docker.image("${DOCKER_IMAGE}:${env.BUILD_ID}").push()
                     }
+                }
             }
         }
     }
