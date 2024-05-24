@@ -1,8 +1,8 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE = 'aminemazza/mon-portfolio'
         DOCKER_CREDENTIALS = 'dockerhub'
+        DOCKER_IMAGE = 'aminemazza/mon-portfolio'
     }
     stages {
         stage('Checkout') {
