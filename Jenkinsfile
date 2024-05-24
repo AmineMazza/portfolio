@@ -1,7 +1,8 @@
 pipeline {
     agent any
     environment {
-        DOCKER_IMAGE = 'dockerhub'
+        DOCKER_IMAGE = 'aminemazza/mon-portfolio'
+        DOCKER_CREDENTIALS = 'dockerhub'
     }
     stages {
         stage('Checkout') {
@@ -19,10 +20,11 @@ pipeline {
         stage('Push Docker image') {
             steps {
                 script {
-                    docker.withRegistry('https://registry.hub.docker.com', 'dockerhub') {
-                        docker.image("${DOCKER_IMAGE}:${env.BUILD_ID}").push()
+                    withDockerRegistry([url: 'https://registry.hub.docker.com', credentialsId: "${DOCKER_CREDENTIALS}"]) {
+                        docker.withRegistry('https://registry.hub.docker.com', "${DOCKER_CREDENTIALS}") {
+                            docker.image("${DOCKER_IMAGE}:${env.BUILD_ID}").push()
+                        }
                     }
-                }
             }
         }
     }
